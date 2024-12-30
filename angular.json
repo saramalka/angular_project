@@ -72,9 +72,13 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+    "proxyConfig": "src/app/proxy.config.json"
+  },
           "configurations": {
             "production": {
-              "buildTarget": "project:build:production"
+              "buildTarget": "project:build:production",
+              "proxyConfig": "./src/app/proxy.config.json"
             },
             "development": {
               "buildTarget": "project:build:development"
@@ -100,9 +104,20 @@
               }
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+                "chart.js",
+                "xlsx",
+                "jspdf-autotable",
+                "file-saver",
+                "jspdf",
+                "quill"
+              ]
           }
         }
       }
