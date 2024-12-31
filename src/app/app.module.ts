@@ -12,6 +12,8 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HomeComponentComponent } from './home-component/home-component.component';
+import { PaymentModule } from './modules/payment/payment.module';
+import { DonorListModule } from './modules/donor-list/donor-list.module';
 
 
 @NgModule({
@@ -32,7 +34,7 @@ import { HomeComponentComponent } from './home-component/home-component.componen
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,PaymentModule,DonorListModule
 
   ],
   providers: [
