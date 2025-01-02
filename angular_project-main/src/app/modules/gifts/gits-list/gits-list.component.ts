@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { createProduct, Product } from '../../../domain/product';
 import { ProductService } from '../../../service/productservice';
@@ -34,12 +34,15 @@ export class GitsListComponent implements OnInit {
     dt: any
     statuses!: any[];
     event: any;
-    
+
 
     constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+    ngOnChanges(changes: SimpleChanges): void {
+        throw new Error('Method not implemented.');
+    }
 
     ngOnInit() {
-        //this.productService.getProducts().then((data) => (this.products = data));
+       
         this.productService.getProductsDataFromServer().subscribe(data => {
             this.products = data
         })
@@ -63,7 +66,14 @@ export class GitsListComponent implements OnInit {
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.products = this.products.filter((val) => !this.selectedProducts?.includes(val));
+                this.selectedProducts?.forEach(product=>{
+                    this.productService.deleteProductFromServer(product).subscribe(data => {
+                        this.product = createProduct();
+                        this.productService.getProductsDataFromServer().subscribe(d => {
+                        this.products = d
+                        })
+                    })
+                })
                 this.selectedProducts = null;
                 this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
             }
@@ -82,15 +92,13 @@ export class GitsListComponent implements OnInit {
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.productService.deleteProductFromServer(product).subscribe(data => {
-                    if (data) {
-                        this.product = createProduct();
-                        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-                        this.productService.getProductsDataFromServer().subscribe(d=>{
-                            this.products=d
-                        })
-                    }
+                    this.product = createProduct();
+                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+                    this.productService.getProductsDataFromServer().subscribe(d => {
+                        this.products = d
+                        console.log(d)
+                    })
                 })
-
             }
         });
     }
@@ -104,13 +112,15 @@ export class GitsListComponent implements OnInit {
         const value = input.value;
         this.dt.filterGlobal(value, 'contains');
     }
-    saveProduct(product:Product) {
+    saveProduct(product: Product) {
         this.submitted = true;
         if (this.product.name?.trim()) {
             if (product.id) {
                 this.products[this.findIndexById(product.id)] = product;
                 this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-            } else
+            }
+            
+            else
                 if (this.findIndexByName(this.product.name) < 0) {
 
                     product.id = this.createId();
