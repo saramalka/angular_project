@@ -116,6 +116,12 @@ export class GitsListComponent implements OnInit {
         this.submitted = true;
         if (this.product.name?.trim()) {
             if (product.id) {
+                this.productService.updateProduct(product).subscribe(data=>{
+                    this.productService.getProductsDataFromServer().subscribe(d => {
+                        this.products = d
+                        console.log(d)
+                    })
+                })
                 this.products[this.findIndexById(product.id)] = product;
                 this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
             }
@@ -125,7 +131,13 @@ export class GitsListComponent implements OnInit {
 
                     product.id = this.createId();
                     product.image = 'product-placeholder.svg';
-                    this.products.push(product);
+                    this.productService.post(product).subscribe(data=>{
+                        this.productService.getProductsDataFromServer().subscribe(d => {
+                            this.products = d
+                            console.log(d)
+                        })
+                    })
+                
                     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
                 }
                 else

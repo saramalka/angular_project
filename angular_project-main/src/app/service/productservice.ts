@@ -1301,6 +1301,9 @@ export class ProductService {
     post(product:Product): Observable<Product>{
        return this._http.post<Product>("http://localhost:3000/api/products",product)
     }
+    updateProduct(product:Product){
+        return this._http.put<Product>("http://localhost:3000/api/products/"+product.id,product)
+     }
     getProductsData() {
         return [
             createProduct({
