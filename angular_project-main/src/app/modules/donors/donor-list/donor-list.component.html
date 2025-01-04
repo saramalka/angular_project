@@ -37,9 +37,7 @@
                 <th pSortableColumn="name" style="min-width:15rem">
                     Name <p-sortIcon field="name" />
                 </th>
-                <th>
-                    Image
-                </th>
+               
                 <th>My Gifts</th>
                 <th></th>
             </tr>
@@ -55,11 +53,7 @@
                 <td>
                     {{ donor.name }}
                 </td>
-                <td>
-                    <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + donor.image"
-                        [alt]="donor.name" width="50" class="shadow-4" />
-                </td>
-
+                
                 <td><p-button label="show" severity="warning" (click)="showGifts()"/>
                      <!-- <p-tag severity="warning" (click)="showGifts()">
                         Show
@@ -82,23 +76,7 @@
 
     <p-dialog [(visible)]="donorDialog" [style]="{ width: '450px' }" header="donor Details" [modal]="true"
         styleClass="p-fluid">
-        <ng-template pTemplate="content">
-            <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + donor.image" [alt]="donor.image"
-                class="block m-auto pb-3" *ngIf="donor.image" />
-            <div class="field">
-                <label for="name" req>Name</label>
-                <input type="text" pInputText id="name" name="name" [(ngModel)]="donor.name" required autofocus />
-
-                <small class="p-error" *ngIf="submitted && !donor.name">
-                    Name is required.
-                </small>
-            </div>
-        </ng-template>
-
-        <ng-template pTemplate="footer">
-            <p-button label="Cancel" icon="pi pi-times" [text]="true" (onClick)="hideDialog()" />
-            <p-button label="Save" icon="pi pi-check" [text]="true" (onClick)="saveDonor()" />
-        </ng-template>
+      <app-donor-detales [donor]="this.donor" (onSaveDonor)="saveDonor($event)" (hide)="hideDialog()"></app-donor-detales>
     </p-dialog>
 
 

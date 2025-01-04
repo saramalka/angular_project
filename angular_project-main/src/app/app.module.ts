@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HomeComponentComponent } from './home-component/home-component.component';
 import { PaymentModule } from './modules/payment/payment.module';
-import { DonorListModule } from './modules/donor-list/donor-list.module';
 import { PurchacewModule } from './modules/purchase/purchace.module';
 import { NavComponent } from './nav/nav.component';
 import { NavModule } from './nav/nav.module';
@@ -21,6 +20,8 @@ import { ImportsModule } from './imports';
 import { BuyGiftsComponent } from './buy-gifts/buy-gifts.component';
 import { TagModule } from 'primeng/tag';
 import { DataViewModule } from 'primeng/dataview';
+import { DonorDetalesComponent } from './modules/donors/donor-detales/donor-detales.component';
+import { DonorModule } from './modules/donors/donors.module';
 
 
 
@@ -44,7 +45,7 @@ import { DataViewModule } from 'primeng/dataview';
     FormsModule,TagModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,PaymentModule,DonorListModule,PurchacewModule,NavModule
+    RouterModule,PaymentModule,DonorModule,PurchacewModule,NavModule
 
   ],
   providers: [

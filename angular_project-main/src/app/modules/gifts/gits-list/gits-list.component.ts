@@ -42,7 +42,7 @@ export class GitsListComponent implements OnInit {
     }
 
     ngOnInit() {
-       
+
         this.productService.getProductsDataFromServer().subscribe(data => {
             this.products = data
         })
@@ -66,11 +66,11 @@ export class GitsListComponent implements OnInit {
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.selectedProducts?.forEach(product=>{
+                this.selectedProducts?.forEach(product => {
                     this.productService.deleteProductFromServer(product).subscribe(data => {
                         this.product = createProduct();
                         this.productService.getProductsDataFromServer().subscribe(d => {
-                        this.products = d
+                            this.products = d
                         })
                     })
                 })
@@ -116,7 +116,7 @@ export class GitsListComponent implements OnInit {
         this.submitted = true;
         if (this.product.name?.trim()) {
             if (product.id) {
-                this.productService.updateProduct(product).subscribe(data=>{
+                this.productService.updateProduct(product).subscribe(data => {
                     this.productService.getProductsDataFromServer().subscribe(d => {
                         this.products = d
                         console.log(d)
@@ -125,19 +125,18 @@ export class GitsListComponent implements OnInit {
                 this.products[this.findIndexById(product.id)] = product;
                 this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
             }
-            
+
             else
                 if (this.findIndexByName(this.product.name) < 0) {
-
                     product.id = this.createId();
                     product.image = 'product-placeholder.svg';
-                    this.productService.post(product).subscribe(data=>{
+                    this.productService.post(product).subscribe(data => {
                         this.productService.getProductsDataFromServer().subscribe(d => {
                             this.products = d
                             console.log(d)
                         })
                     })
-                
+
                     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
                 }
                 else

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Donor } from '../../domain/donor';
-import { DonorService } from '../../service/donorsServise';
+import { Donor } from '../../../domain/donor';
+import { DonorService } from '../../../service/donorsServise';
 import { ToolbarModule } from "primeng/toolbar";
 @Component({
     selector: 'app-donor-list',
@@ -110,18 +110,31 @@ export class DonorListComponent implements OnInit {
             console.error('Table reference (dt) is not initialized.');
         }
     }
-    saveDonor() {
+    saveDonor(donor:Donor) {
         this.submitted = true;
-        if (this.donor.name?.trim()) {
-            if (this.donor.id) {
-                this.donors[this.findIndexById(this.donor.id)] = this.donor;
+        if (donor.name?.trim()) {
+            if (donor.id) {
+                this.donorService.updateProduct(donor).subscribe(data=>{
+                    this.donorService.getDonorsDataFromServer().subscribe(d => {
+                        this.donors = d
+                        console.log(d)
+                    })
+                })
+               
+                this.donors[this.findIndexById(donor.id)] = this.donor;
                 this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'donor Updated', life: 3000 });
             } else
-                if (this.findIndexByName(this.donor.name) < 0) {
-
-                    this.donor.id = this.createId();
-                    //this.donor.image = 'product-placeholder.svg';
-                    this.donors.push(this.donor);
+                if (this.findIndexByName(donor.name) < 0) {
+                    donor.id=this.createId()
+                    console.log(`'new' ${donor}`)
+                //not working 
+                    this.donorService.post(donor).subscribe(data=>{
+                        this.donorService.getDonorsDataFromServer().subscribe(d => {
+                            this.donors = d
+                            console.log(d)
+                        })
+                    })
+                
                     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'donor Created', life: 3000 });
                 }
                 else

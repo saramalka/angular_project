@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {  Donor } from '../domain/donor';
+import { Donor } from '../domain/donor';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -24,5 +24,11 @@ export class DonorService {
 
     getOneFromServer(id: number): Observable<Donor> {
         return this._http.get<Donor>("http://localhost:3000/api/donors/" + id)
+    }
+    post(donor: Donor): Observable<Donor> {
+        return this._http.post<Donor>("http://localhost:3000/api/donors", donor)
+    }
+    updateProduct(donor: Donor) {
+        return this._http.put<Donor>("http://localhost:3000/api/donors/" + donor.id, donor)
     }
 }
