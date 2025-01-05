@@ -22,6 +22,10 @@ alert(`hide: EventEmitter<boolean> `)
     this.hide.emit();
   }
   saveProduct() {
+    this.submitted=true
+    if (!this.product.name || !this.product.price || !this.product.giver||!this.product.quantity) {
+      return; 
+    }
     this.onSaveGift.emit(this.product)
   }
 

@@ -4,7 +4,7 @@ import { HomeComponent } from './modules/home-component/home-component.component
 import { GitsListComponent } from './modules/gifts/gits-list/gits-list.component';
 import { DonorListComponent } from './modules/donors/donor-list/donor-list.component';
 import { PurchaseComponent } from './modules/purchase/purchase.component';
-import { PaymentComponent } from './modules/payment/payment.component';
+import { PaymentComponent } from './modules/Login/payment.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [

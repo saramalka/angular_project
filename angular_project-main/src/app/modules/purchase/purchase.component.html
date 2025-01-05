@@ -28,9 +28,12 @@
                                         }}</span>
                                     <div class="flex gap-2">
                                         <p-button icon="pi pi-shopping-cart"
-                                            class="flex-auto md:flex-initial white-space-nowrap" label="Buy Ticket" />
-                                        <!-- [disabled]="product.inventoryStatus === 'OUTOFSTOCK'" -->
-                                        <p-button icon="pi pi-heart" [outlined]="true" />
+                                            class="flex-auto md:flex-initial white-space-nowrap" 
+                                            label="Buy Ticket"
+                                             [disabled]="item.inventoryStatus === 'OUTOFSTOCK'"
+                                             (click)="buyTicket(item)"/>
+                                        
+                                        <!-- <p-button icon="pi pi-heart" [outlined]="true" /> -->
                                     </div>
                                 </div>
                                 <div class="surface-100 p-1" style="border-radius: 30px">

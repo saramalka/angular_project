@@ -8,8 +8,7 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="products" [rows]="10" [paginator]="true"
-    [globalFilterFields]="['name', 'category', 'price']"
+    <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name', 'category', 'price']"
         [tableStyle]="{ 'min-width': '75rem' }" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
@@ -38,14 +37,11 @@
                 <th pSortableColumn="price">
                     Price <p-sortIcon field="price" />
                 </th>
-
-                <th pSortableColumn="category" style="min-width:10rem">
-                    Category <p-sortIcon field="category" />
-                </th>
+                <th>Quntity</th>
                 <th pSortableColumn="giver" style="min-width:15rem">
-                    Giver <p-sortIcon field="giver" />
+                    Donor<p-sortIcon field="giver" />
                 </th>
-                
+
                 <th></th>
             </tr>
         </ng-template>
@@ -67,9 +63,7 @@
                 <td>
                     {{ product.price | currency : 'USD' }}
                 </td>
-                <td>
-                    {{ product.category }}
-                </td>
+                <td>{{product.quantity}}</td>
                 <td>
                     {{product.giver}}
                 </td>
@@ -91,7 +85,8 @@
 
     <p-dialog [(visible)]="productDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true"
         styleClass="p-fluid">
-        <app-gift-details [product]="product" (onSaveGift)="saveProduct($event)" (hide)=" hideDialog()"></app-gift-details>
+        <app-gift-details [product]="product" (onSaveGift)="saveProduct($event)"
+            (hide)=" hideDialog()"></app-gift-details>
     </p-dialog>
 
     <p-confirmDialog [style]="{ width: '450px' }" />

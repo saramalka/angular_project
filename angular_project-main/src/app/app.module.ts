@@ -12,7 +12,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HomeComponentComponent } from './home-component/home-component.component';
-import { PaymentModule } from './modules/payment/payment.module';
+import { PaymentModule } from './modules/Login/payment.module';
 import { PurchacewModule } from './modules/purchase/purchace.module';
 import { NavComponent } from './nav/nav.component';
 import { NavModule } from './nav/nav.module';

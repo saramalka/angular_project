@@ -1,6 +1,7 @@
 <!-- <ng-template pTemplate="content"> -->
 <!-- <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.image"
     class="block m-auto pb-3" *ngIf="donor.image" /> -->
+   
 <div class="field">
     <label for="name" req>Name</label>
     <input type="text" pInputText id="name" name="name" [(ngModel)]="donor.name" required autofocus />
@@ -22,7 +23,7 @@
         </small>
         <div class="field col">
             <label for="quantity">Email</label>
-            <p-inputNumber id="quantity" [(ngModel)]="donor.email" />
+            <input type="email" id="quantity" [(ngModel)]="donor.email" />
         </div>
         <small class="p-error" *ngIf="submitted && !donor.email">
             Email is required.
@@ -32,5 +33,5 @@
 
         <!-- <ng-template pTemplate="footer"> -->
         <p-button label="Cancel" icon="pi pi-times" [text]="true" (onClick)="hideDialog()" />
-        <p-button label="Save" icon="pi pi-check" [text]="true" (onClick)="saveProduct()" />
+        <p-button label="Save" icon="pi pi-check" [text]="true" (onClick)="saveDonor()" />
         <!-- </ng-template> -->

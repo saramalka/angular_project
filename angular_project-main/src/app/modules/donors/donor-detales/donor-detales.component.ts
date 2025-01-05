@@ -24,7 +24,11 @@ export class DonorDetalesComponent {
     this.submitted = false;
     this.hide.emit();
   }
-  saveProduct() {
+  saveDonor() {
+    this.submitted=true
+    if (!this.donor.name || !this.donor.phone || !this.donor.email) {
+      return; 
+    }
     this.onSaveDonor.emit(this.donor)
   }
 

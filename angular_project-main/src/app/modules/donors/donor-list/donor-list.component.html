@@ -37,7 +37,8 @@
                 <th pSortableColumn="name" style="min-width:15rem">
                     Name <p-sortIcon field="name" />
                 </th>
-               
+               <th>Phone</th>
+               <th>Email</th>
                 <th>My Gifts</th>
                 <th></th>
             </tr>
@@ -53,7 +54,9 @@
                 <td>
                     {{ donor.name }}
                 </td>
-                
+                <!-- //לשנות בהמשך בלי ? אלו שדות חובה!! -->
+                <td>{{donor?.phone}}</td>
+                <td>{{donor?.email}}</td>
                 <td><p-button label="show" severity="warning" (click)="showGifts()"/>
                      <!-- <p-tag severity="warning" (click)="showGifts()">
                         Show

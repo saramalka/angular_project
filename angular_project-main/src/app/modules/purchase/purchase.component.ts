@@ -23,7 +23,11 @@ export class PurchaseComponent {
     ngOnInit() {
         this.productService.getProducts().then((data) => (this.products = data.slice(0, 5)));
     }
+    buyTicket(product: Product){
 
+        
+
+    }
     getSeverity (product: Product) {
         switch (product.inventoryStatus) {
             case 'INSTOCK':
