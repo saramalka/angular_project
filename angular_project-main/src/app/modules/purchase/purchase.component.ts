@@ -17,6 +17,7 @@ import { signal } from '@angular/core';
 })
 export class PurchaseComponent {
     products!: Product[];
+layout: any;
 
     constructor(private productService: ProductService) {}
 

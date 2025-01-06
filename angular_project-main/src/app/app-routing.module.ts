@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:'donors',component:DonorListComponent},
   {path:'purchase',component:PurchaseComponent},
   {path:'pay',component:PaymentComponent},
+  // {path:'login',component:L}
   {path:'**',component:ErrorPageComponent},
 ];
 
