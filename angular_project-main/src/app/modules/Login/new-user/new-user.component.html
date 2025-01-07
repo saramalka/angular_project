@@ -1,1 +1,44 @@
 <p>new-user works!</p>
+<p-card header="Register">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="p-fluid">
+        <div class="field">
+          <label for="userName">User Name</label>
+          <p-inputText id="userName" formControlName="userName"></p-inputText>
+          <ng-container *ngIf="registerForm.errors">
+            <small *ngIf="registerForm.errors['userName']" >
+              Name is required
+            </small>
+          </ng-container>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <p-inputText id="email" formControlName="email"></p-inputText>
+          <ng-container *ngIf="registerForm.errors">
+            <small *ngIf="registerForm.errors['email']" >
+              Mail address is invalid
+            </small>
+          </ng-container>
+        </div>
+        <div class="field">
+            <label for="password">Phone</label>
+            <p-inputNumber  id="phone" formControlName="phone"/>
+            <ng-container *ngIf="registerForm.errors">
+              <small *ngIf="registerForm.errors['phone']" >
+                Phone number should consist of 9 to 10 numbers.
+              </small>
+            </ng-container>
+          </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <p-password id="password" formControlName="password"></p-password>
+          <ng-container *ngIf="registerForm.errors">
+            <small *ngIf="registerForm.errors['password']" >
+              Password nust contains at least 8 charcters.
+            </small>
+          </ng-container>
+        </div>
+        <p-button type="submit" label="Register" icon="pi pi-user-plus"></p-button>
+      </div>
+    </form>
+  </p-card>
