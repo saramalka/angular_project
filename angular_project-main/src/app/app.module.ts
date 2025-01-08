@@ -22,6 +22,9 @@ import { TagModule } from 'primeng/tag';
 import { DataViewModule } from 'primeng/dataview';
 import { DonorDetalesComponent } from './modules/donors/donor-detales/donor-detales.component';
 import { DonorModule } from './modules/donors/donors.module';
+import { PaymentRouterModule } from './modules/Login/payment-routing.module';
+import { CardModule } from 'primeng/card';
+import { PasswordModule } from 'primeng/password';
 
 
 
@@ -33,7 +36,7 @@ import { DonorModule } from './modules/donors/donors.module';
     
   ],
   imports: [
-    ImportsModule,
+    ImportsModule,CardModule,PasswordModule,
     NoopAnimationsModule,
     BrowserAnimationsModule, 
     BrowserModule,
@@ -45,7 +48,7 @@ import { DonorModule } from './modules/donors/donors.module';
     FormsModule,TagModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,PaymentModule,DonorModule,PurchacewModule,NavModule
+    RouterModule,PaymentModule,DonorModule,PurchacewModule,NavModule,PaymentRouterModule
 
   ],
   providers: [

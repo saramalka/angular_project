@@ -13,8 +13,11 @@ const routes: Routes = [
   {path:'gifts',component:GitsListComponent},
   {path:'donors',component:DonorListComponent},
   {path:'purchase',component:PurchaseComponent},
-  {path:'pay',component:PaymentComponent},
-  // {path:'login',component:L}
+ 
+  { path: 'pay', loadChildren: () => import('./modules/Login/payment-routing.module').then(m => m.PaymentRouterModule) },
+  { path: '', redirectTo: 'pay/signup', pathMatch: 'full' },
+  { path: 'login', redirectTo: 'pay/login' },
+  { path: '**', redirectTo: 'pay/signup' },
   {path:'**',component:ErrorPageComponent},
 ];
 

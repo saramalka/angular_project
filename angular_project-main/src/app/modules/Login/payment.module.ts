@@ -17,13 +17,15 @@ import { ExistingUserComponent } from './existing-user/existing-user.component';
 import { UserService } from '../../service/userService';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessageModule } from 'primeng/message';
+import { PaymentRouterModule } from './payment-routing.module';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [PaymentComponent, NewUserComponent, ExistingUserComponent],
   imports: [
     CommonModule,
-    DataViewModule, InputNumberModule,  MessageModule,     
-    DividerModule, ButtonModule, InputTextModule,ReactiveFormsModule
+    DataViewModule, InputNumberModule,  MessageModule, PaymentRouterModule,    
+    DividerModule, ButtonModule, InputTextModule,ReactiveFormsModule,PasswordModule
   ],
   providers: [ProductService,UserService],
   exports: [PaymentComponent], 
